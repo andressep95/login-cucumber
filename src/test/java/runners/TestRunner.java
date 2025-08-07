@@ -13,7 +13,8 @@ import org.junit.runner.RunWith;
         "summary",
         "html:target/cucumber-report.html",
         "json:target/cucumber-report.json"
-    }
+    },
+    publish = true
 )
 public class TestRunner {
 }
