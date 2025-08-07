@@ -7,16 +7,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LoginPages {
-
+public class LoginPage {
     private final WebDriver driver;
 
     private final By usernameInput = By.id("username");
     private final By passwordInput = By.id("password");
     private final By submitButton = By.id("submit");
-    private final By messageLocator = By.id("error");
+    private final By messageLocator = By.id("error"); // para mensajes de error
+    private final By successLocator = By.tagName("h1"); // para login exitoso
 
-    public LoginPages(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -31,12 +31,19 @@ public class LoginPages {
     }
 
     public String getMessage() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(successLocator));
+            return driver.findElement(successLocator).getText();
+        } catch (Exception ignored) {
+        }
+
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(messageLocator));
             return driver.findElement(messageLocator).getText();
         } catch (Exception ignored) {
         }
+
         return "";
     }
 }

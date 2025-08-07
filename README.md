@@ -139,3 +139,14 @@ public void afterStep(Scenario scenario) {
     }
 }
 ```
+
+
+# 5 Configuramos el runner para cucumber (TestRunner.java)
+Se setearon valores necesarios para que Cucumber pueda ejecutar los escenarios de prueba.
+
+
+# 6 Configuramos PagesLogin
+Se generaron metodos reutilizables para interactuar con la pagina de login, como:
+- `login()`: Abre la pagina de login.
+- `getMessage()`: Obtiene el mensaje de la pagina.
+
